@@ -19,19 +19,21 @@ int main(void)
     show_Menu();
     while ((choice = getchar()) != '5')
     {
+        if (choice == '\n')
+            continue;
         // 选择薪资
         switch (choice)
         {
-        case 1:
+        case '1':
             salary_perhour = pay_rate1;
             break;
-        case 2:
+        case '2':
             salary_perhour = pay_rate2;
             break;
-        case 3:
+        case '3':
             salary_perhour = 10.00;
             break;
-        case 4:
+        case '4':
             salary_perhour = pay_rate4;
             break;
         }
@@ -45,11 +47,12 @@ int main(void)
         if (salary_sum <= 300)
             tax = salary_sum * pay_rate1;
         else if (salary_sum <= 450)
-            tax = 300 * pay_rate1 + (salary_sum - 300) * pay_rate2;
+            tax = 300 * tax1 + (salary_sum - 300) * tax2;
         else
-            tax = 300 * pay_rate1 + 150 * pay_rate2 + (salary_sum - 450) * pay_rate3;
+            tax = 300 * tax1 + 150 * tax2 + (salary_sum - 450) * tax3;
         salary = salary_sum - tax;
-        printf("工资总额为%.3f$ 税金为%.3f$ 净收入为%.3f$\n", salary_sum, tax, salary);
+        printf("\n工资总额为%.3f$ 税金为%.3f$ 净收入为%.3f$\n\n\n", salary_sum, tax, salary);
+        show_Menu();
     }
 
     printf("做什么梦呢，还不赶紧去干活！\n");
